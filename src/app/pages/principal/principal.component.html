@@ -1,54 +1,76 @@
-
 <header class="header">
-
   <div class="container">
-    <div class="logo-nombre">
-      <figure class="logo">
-        <img src="assets/Public/resources/logo.png" alt="logo">
-      </figure>
-      <div class="title_logo">
-        <h1>BELEN'S</h1>
-        <p>Eventos</p>
+    <a routerLink="/inicio">
+      <div class="logo-nombre">
+        <figure class="logo">
+
+          <img src="assets/Public/resources/logo.png" alt="logo">
+        </figure>
+        <div class="title_logo">
+          <h1>BELEN'S</h1>
+          <p>Eventos</p>
+        </div>
       </div>
-    </div>
+    </a>
     <nav class="menu">
       <ol>
-        <li><a class="link" href="./index.html">INICIO</a></li>
+        <li><a routerLink="/inicio" class="link">INICIO</a></li>
+
         <li class="link">
-          <a class="link" href="#paquetes">PAQUETES</a>
-          <!-- <ul class="sub_menu">
-            <li><a href="#">xasdasdsads1</a></li>
-            <li><a href="#">x2</a></li>
-            <li><a href="#">x3</a></li>
-            <li><a href="#">x4</a></li>
-            <li><a href="#">x5</a></li>
-          </ul> -->
+          <a href="#paquete" class="link">PAQUETES</a>
         </li>
-        <li><a class="link" data-scroll href="#empresa">EMPRESA</a></li>
-        <li><a class="link" data-scroll href="#eventos">EVENTOS</a></li>
-        <li><a class="link" href="#promociones">PROMOCIONES</a></li>
-        <li><a class="link" href="#servicios">SERVICIOS</a></li>
+        <li><a class="link" href="#empresa">EMPRESA</a></li>
+        <li><a class="link" href="#eventos">EVENTOS</a></li>
+        <li><a ngNativeValidate class="link" href="#promocion">PROMOCIONES</a></li>
+
+        <li class="sub_servicio">
+          <a class="link" href="#servicios">SERVICIOS</a>
+          <ul class="sub_menu">
+            <li><a routerLink="/salones">Alquiler de Salones</a></li>
+            <li><a routerLink="/mobiliario">Alquiler de Moboliario</a></li>
+            <li><a routerLink="/catering">Catering</a></li>
+            <li><a routerLink="/bar">Servicio de Bar</a></li>
+            <li><a routerLink="/comedores">Atencion a Comedores</a></li>
+          </ul>
+
+        </li>
         <li><a class="link" href="#contacto">CONTACTO</a></li>
+
         <!-- <ul>
 
-                        <li><button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary">Secondary</button></li>
-                        <li>
-                              
-                            <button type="button" class="btn waves-effect waves-light btn-rounded btn-outline-secondary">Secondary</button>
+                    <li><button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary">Secondary</button></li>
+                    <li>
+                          
+                        <button type="button" class="btn waves-effect waves-light btn-rounded btn-outline-secondary">Secondary</button>
 
-                        </li>
-                    </ul> -->
+                    </li>
+                </ul> -->
       </ol>
     </nav>
   </div>
-  <a href="#" class="btn btn-outline-light" style="margin-right: 15px;" data-toggle="modal"
-    data-target="#modalRegistro">Registrarse</a>
-  <a href="#" class="btn btn-outline-light" style="margin-right: 15px;" data-toggle="modal"
-    data-target="#modalLogin">Inicias Secion</a>
-  <a href="#">
-    <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 40px; height: 40px;">
-  </a>
 
+  <div [ngClass]="ocultarBoton">
+    <a href="#" class="btn btn-outline-light" style="margin: 10px 0px;" data-toggle="modal"
+      data-target="#modalRegistro">Registrarse</a>
+    <a href="#" class="btn btn-outline-light" data-toggle="modal" data-target="#modalLogin">Inicias Secion</a>
+  </div>
+  <!-- [ngClass]="ocultarPerfil" -->
+  <div *ngIf="(ocultarBoton.length>3)" class="header__menu" >
+  <div class="header__menu--profile">
+      <img src="assets/Public/user-white.png" alt="user">
+      <p>Perfil</p>
+    </div>
+    <ul>
+      <li><a href="#">{{correo}}</a></li>
+      <li><a (click)="_usuarioServices.logout()" href="#">Cerrar Sesión</a></li>
+    </ul>
+  </div>
+
+
+
+  <a href="#">
+    <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
+  </a>
 
 </header>
 <!-- caroucel -->
@@ -56,7 +78,7 @@
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2" id="paquetes"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2" id="paquete"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -119,7 +141,7 @@
       <div class="header-text">
         <div class="header-shadow-text">PAQUETES</div>
         <h1>PAQUETES</h1>
-        <p>NOSOTRO PAQUETES HABLAN POR SI SOLOS.
+        <p>NUESTROS PAQUETES HABLAN POR SI SOLOS.
           NAVEGUE Y COMPRUÉBELO UD. MISMO
         </p>
       </div>
@@ -130,7 +152,7 @@
 
 
 
-<!-- GRID SERVICIOS -->
+<!-- GRID PAQUETES -->
 <section class="servicios" style="padding-top: 128px; margin-bottom: -155px;">
   <div class="container">
     <div class="container_servicios">
@@ -144,7 +166,13 @@
               <h4 class="card-title">Card title</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
-              <a id="buttonCarrito" class="btn btn-primary btn primary">Añadir al Carrito</a>
+              <!-- <a id="buttonCarrito" class="btn btn-primary btn primary">Añadir al Carrito</a> -->
+
+              <div class="text-center">
+                <button type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
+              </div>
+
+
             </div>
           </div>
           <!-- Card -->
@@ -239,8 +267,20 @@
       </div>
     </div>
   </div>
+
+
+  <div class="row">
+    <div class="col-12">
+
+      <div class="text-center">
+        <button routerLink="/paquetes" type="button" class="btn btn-secondary btn-lg todo">VER TODOS LOS
+          PAQUETES</button>
+      </div>
+
+    </div>
+  </div>
 </section>
-<!-- END GRID SERVICIOS -->
+<!-- END GRID PAQUETES -->
 
 
 <!-- aserca de nosotros -->
@@ -444,7 +484,7 @@
   </div>
 </section>
 <!--end carousel -->
-<div class="col text-center text-uppercase empezar" id="promociones">
+<div class="col text-center text-uppercase empezar" id="promocion">
   <h4>¿LISTOS PARA INICIAR?</h4>
   <small>¿Cuántas veces soñaste con hacer una fiesta inolvidable, de esas que amigos y familiares hablan y
     recuerdan en cada reunión ¿Cuántas veces imaginaste esa noche mágica?</small>
@@ -531,10 +571,20 @@
 </section>
 <!-- END-Speakers -->
 
+<div class="row" id="servicios">
+  <div class="col-12">
 
-<div id="servicios" class="container container_botton">
-  <button type="button" class="btn btn-secondary btn-lg btn-block todo">VER TODAS LAS PROMOCIONES</button>
+    <div class="text-center">
+      <button routerLink="/promociones" type="button" class="btn btn-secondary btn-lg todo">VER TODAS LAS
+        PROMOCIONES</button>
+    </div>
+
+  </div>
 </div>
+
+<!-- <div id="servicios" class="container container_botton">
+  
+</div> -->
 
 <section class="paquetes" style="padding-bottom: 150px; padding-top: 60px;">
   <div class="container">
@@ -555,54 +605,58 @@
     <div class="container_servicios">
       <div class="item level-1">
 
-        <div class="card text-white  mb-3 servicio">
-          <div class="card-header servicios_icon">
-            <img class="" src="assets/Public/icons/diamond2.png" alt="15 años">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">ALQUILER DE SALONES</h5>
-            <p class="card-text">Contamos con amplios y modernos salones para la realización de eventos
-              sociales, empresariales e institucionales. Nuestras cómodas instalaciones se adaptan a
-              distintas alternativas de equipamiento y decoración.
+        <a routerLink="/salones" href="#">
+          <div class="card text-white  mb-3 servicio">
+            <div class="card-header servicios_icon">
+              <img class="" src="assets/Public/icons/diamond2.png" alt="15 años">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">ALQUILER DE SALONES</h5>
+              <p class="card-text">Contamos con amplios y modernos salones para la realización de eventos
+                sociales, empresariales e institucionales. Nuestras cómodas instalaciones se adaptan a
+                distintas alternativas de equipamiento y decoración.
 
-              “Sabemos que cada evento es especial y único y nuestra prioridad es que se ejecute con
-              responsabilidad y profesionalismo en un ambiente seguro y agradable”.
-            </p>
+                “Sabemos que cada evento es especial y único y nuestra prioridad es que se ejecute con
+                responsabilidad y profesionalismo en un ambiente seguro y agradable”.
+              </p>
+            </div>
           </div>
-        </div>
-
+        </a>
       </div>
       <div class="item level-2">
-        <div class="card text-white  mb-3 servicio">
-          <div class="card-header servicios_icon">
-            <img class="" src="assets/Public/icons/cocktail.png" alt="15 años">
+        <a routerLink="/moboliario" href="#">
+
+          <div class="card text-white  mb-3 servicio">
+            <div class="card-header servicios_icon">
+              <img class="" src="assets/Public/icons/cocktail.png" alt="15 años">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">MOBILIARIO</h5>
+              <p class="card-text">Mobiliario (vajilla, puf, lounge, mesas, sillas, mantelería,
+                cubertería,
+                cristalería, etc.) <br>
+
+                Somos especialistas en los servicios de alquiler de mobiliario para eventos de cualquier
+                tipo ya sean estos pequeños y/o grandes.<br><br>
+
+
+
+                Contamos con la logística necesaria para asumir cualquier desafío si de eventos se
+                trata,
+                con los mejores equipos para dar un servicio de calidad cómodamente a más de 5.000
+                personas,
+                con amplia cobertura a nivel provincial y local.
+
+                “La puntualidad, el servicio personalizado y la excelencia son los puntos principales
+                con
+                los que trabaja nuestra empresa”.
+              </p>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">MOBILIARIO</h5>
-            <p class="card-text">Mobiliario (vajilla, puf, lounge, mesas, sillas, mantelería,
-              cubertería,
-              cristalería, etc.) <br>
-
-              Somos especialistas en los servicios de alquiler de mobiliario para eventos de cualquier
-              tipo ya sean estos pequeños y/o grandes.<br><br>
-
-
-
-              Contamos con la logística necesaria para asumir cualquier desafío si de eventos se
-              trata,
-              con los mejores equipos para dar un servicio de calidad cómodamente a más de 5.000
-              personas,
-              con amplia cobertura a nivel provincial y local.
-
-              “La puntualidad, el servicio personalizado y la excelencia son los puntos principales
-              con
-              los que trabaja nuestra empresa”.
-            </p>
-          </div>
-        </div>
-
+        </a>
 
         <div class="card text-white  mb-3 servicio">
+
           <div class="card-header servicios_icon">
             <img class="" src="assets/Public/icons/ok.png" alt="15 años">
           </div>
@@ -621,79 +675,85 @@
         </div>
       </div>
       <div class="item level-3">
-        <div class="card text-white  mb-3 servicio">
-          <div class="card-header servicios_icon">
-            <img class="" src="assets/Public/icons/cooking.png" alt="15 años">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">CATERING</h5>
-            <p class="card-text">Buffet Nacional e Internacional
-              Bocaditos dulces y salados
-              Plato servido
-              Buffet Chino
-              Buffet de pastas
-              Tablas y mesas de quesos
-              Paella y otros especiales
-              “Sabemos que el éxito de cualquier evento es la suma de muchos detalles y una parte
-              importante es el servicio de catering”.
+        <a routerLink="/catering" href="#">
+          <div class="card text-white  mb-3 servicio">
+            <div class="card-header servicios_icon">
+              <img class="" src="assets/Public/icons/cooking.png" alt="15 años">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">CATERING</h5>
+              <p class="card-text">Buffet Nacional e Internacional
+                Bocaditos dulces y salados
+                Plato servido
+                Buffet Chino
+                Buffet de pastas
+                Tablas y mesas de quesos
+                Paella y otros especiales
+                “Sabemos que el éxito de cualquier evento es la suma de muchos detalles y una parte
+                importante es el servicio de catering”.
 
-              “Nuestros 33 años de experiencia nos respaldan para ayudarle a conseguir el mejor
-              resultado”.
-            </p>
+                “Nuestros 33 años de experiencia nos respaldan para ayudarle a conseguir el mejor
+                resultado”.
+              </p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="item level-1">
-        <div class="card text-white  mb-3 servicio">
-          <div class="card-header servicios_icon">
-            <img class="" src="assets/Public/icons/bar.png" alt="15 años">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">SERVICIO DE BAR</h5>
-            <p class="card-text">Barra caribeña
-              Gaseosas
-              Aguas
-              Vinos
-              Whisky
-              Jugos naturales
-              Cerveza
-              Aperitivos, etc.
-              El servicio de bebidas es de vital importancia, se deben seguir ciertas normas para su
-              desarrollo, así como de disponer una serie de conocimientos. Deben ser cuidadosamente
-              preparados y con las medidas exactas de cada ingrediente, al mismo tiempo la cristalería
-              debe acompañar el aperitivo.
+        <a routerLink="/bar" href="#">
+          <div class="card text-white  mb-3 servicio">
+            <div class="card-header servicios_icon">
+              <img class="" src="assets/Public/icons/bar.png" alt="15 años">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">SERVICIO DE BAR</h5>
+              <p class="card-text">Barra caribeña
+                Gaseosas
+                Aguas
+                Vinos
+                Whisky
+                Jugos naturales
+                Cerveza
+                Aperitivos, etc.
+                El servicio de bebidas es de vital importancia, se deben seguir ciertas normas para su
+                desarrollo, así como de disponer una serie de conocimientos. Deben ser cuidadosamente
+                preparados y con las medidas exactas de cada ingrediente, al mismo tiempo la cristalería
+                debe acompañar el aperitivo.
 
-              Elegir la bebida que acompaña cada comida es primordial, sirviéndola en su temperatura
-              adecuada hará que se disfrute de un verdadero manjar.
+                Elegir la bebida que acompaña cada comida es primordial, sirviéndola en su temperatura
+                adecuada hará que se disfrute de un verdadero manjar.
 
-              En Ana María tomamos en cuenta todos estos detalles, como la conservación, temperatura,
-              el
-              transporte y correcto servicio de las bebidas, a fin de ofrecer un servicio impecable.
-            </p>
+                En Ana María tomamos en cuenta todos estos detalles, como la conservación, temperatura,
+                el
+                transporte y correcto servicio de las bebidas, a fin de ofrecer un servicio impecable.
+              </p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="item level-2">
-        <div class="card text-white  mb-3 servicio">
-          <div class="card-header servicios_icon">
-            <img class="" src="assets/Public/icons/winner.png" alt="15 años">
+        <a routerLink="/comedores" href="#">
+          <div class="card text-white  mb-3 servicio">
+            <div class="card-header servicios_icon">
+              <img class="" src="assets/Public/icons/winner.png" alt="15 años">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">ATENCIÓN A COMEDORES</h5>
+              <p class="card-text">Nuestros chef tienen la mejor capacitación y experiencia necesaria para
+                atender el comedor de tu empresa.<br><br>
+
+                ¡SOMOS LO QUE COMEMOS!<br><br>
+
+                Un desayuno, almuerzo o merienda sano y nutritivo re-energiza el cuerpo y la mente justo
+                en
+                los momentos del día que la eficiencia y la concentración están bajando.
+
+                Según un estudio realizado por la Organización Internacional del Trabajo, la mala
+                alimentación reduce hasta un 20% la productividad laboral.
+              </p>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">ATENCIÓN A COMEDORES</h5>
-            <p class="card-text">Nuestros chef tienen la mejor capacitación y experiencia necesaria para
-              atender el comedor de tu empresa.<br><br>
-
-              ¡SOMOS LO QUE COMEMOS!<br><br>
-
-              Un desayuno, almuerzo o merienda sano y nutritivo re-energiza el cuerpo y la mente justo
-              en
-              los momentos del día que la eficiencia y la concentración están bajando.
-
-              Según un estudio realizado por la Organización Internacional del Trabajo, la mala
-              alimentación reduce hasta un 20% la productividad laboral.
-            </p>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -711,184 +771,94 @@
   </div>
 </section>
 
-<section id="contacto" class="contact">
-  <div class="container">
-    <div class="direccion">
-      <img src="assets/Public/contact/maps-and-flags.png" alt="direccion">
-      <div class="dato">
-        <h6>DIRECCION:</h6>
-        <p>Corrientes 1682 – Bella Vista</p>
-      </div>
-    </div>
-    <div class="direccion">
-      <img src="assets/Public/contact/smartphone.png" alt="telefono">
-      <div class="dato">
-        <h6>TELEFONO:</h6>
-        <p>1123651750 / 1123651773</p>
-      </div>
-    </div>
-    <div class="direccion">
-      <img src="assets/Public/contact/envelope.png" alt="email">
-      <div class="dato">
-        <h6>E-MAIL:</h6>
-        <p>info@janoseventos.com</p>
-      </div>
-    </div>
-    <div class="social">
-      <a href="https://twitter.com/leonidasesteban" class="social-link twitter"></a>
-      <a href="https://facebook.com/leonidas.esteban" class="social-link facebook"></a>
-      <a href="https://github.com/leonidasesteban" class="social-link github"></a>
-      <a href="https://instagram.com/leonidasesteban" class="social-link instagram"></a>
-    </div>
-  </div>
-</section>
-<footer class="footer">
-  <div class="container container_footer">
-    <div class="datos_footer">
-      <h4>BELEN'S EVENTOS</h4>
-      <div class="text_inner">
-        <p>✔ ATENCIÓN PERSONALIZADA</p>
-        <p>✔ 13 Opciones DiFerentes</p>
-        <p>✔ Fiestas All Inclusive</p>
-        <p>✔ Promociones Todo el AÑo</p>
-        <p>✔ ¡NO TE QUEDES SIN TU LUGAR!</p>
-      </div>
-    </div>
-    <div class="form_footer">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">¡Envianos un Mensaje!</h4>
-              <form class="m-t-40" novalidate="">
-                <div class="form-group">
-                  <div class="controls">
-                    <input type="text" name="text" class="form-control" required
-                      data-validation-required-message="This field is required" placeholder="Nombre">
-                    <div class="help-block"></div>
-                  </div>
 
-                </div>
-                <div class="form-group">
-                  <div class="controls">
-                    <input type="email" name="email" class="form-control"
-                      data-validation-required-message="This field is required"
-                      placeholder="Dirección de correo electronico" required>
-                    <div class="help-block"></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="controls">
-                    <input type="text" name="text" class="form-control" required=""
-                      data-validation-required-message="This field is required" minlength="10" maxlength="20"
-                      placeholder="Telefono" aria-invalid="false">
-                    <div class="help-block"></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="controls">
-                    <textarea name="textarea" id="textarea" class="form-control" required=""
-                      placeholder="Mensaje"></textarea>
-                    <div class="help-block"></div>
-                  </div>
-                </div>
-                <div class="text-xs-right">
-                  <button type="submit" class="btn btn-info">Submit</button>
-                  <button type="reset" class="btn btn-inverse">Cancel</button>
-                </div>
-              </form>
-            </div>
+<!-- Modales -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Iniciar Sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form ngNativeValidate #l="ngForm" (ngSubmit)="ingresar(l)">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correo de Usuario</label>
+            <input ngModel name="email" type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" required>
+            <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
           </div>
-        </div>
-      </div>
-
-      <!-- Modales -->
-      <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Iniciar Sesión</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre de Usuario</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                  <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Contraseña</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" required>
-                </div>
-                <div class="alert alert-warning" role="alert">
-                  Todos los campos son obligatorios
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-sertec">Iniciar</button>
-                </div>
-              </form>
-            </div>
-
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input ngModel name="password" type="password" class="form-control" id="exampleInputPassword1" required>
           </div>
-        </div>
-      </div>
-      <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Registrarse</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre de Usuario</label>
-                  <input type="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                  <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Correo Electronico</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    required>
-                  <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Contraseña</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" required>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre de Usuario</label>
-                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    required>
-                  <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
-                </div>
-                <div class="alert alert-warning" role="alert">
-                  Todos los campos son obligatorios
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-sertec">Registrarme</button>
-                </div>
-              </form>
-            </div>
-
+          <div class="alert alert-warning" role="alert">
+            Todos los campos son obligatorios
           </div>
-        </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-sertec">Iniciar</button>
+          </div>
+        </form>
       </div>
-      <!--end modals  -->
 
     </div>
   </div>
-</footer>
+</div>
 
 
+<div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Registrarse</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form ngNativeValidate #f="ngForm" (ngSubmit)="registrarse(f)">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre de Usuario</label>
+            <input ngModel name="nombre" type="text" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" required>
+            <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correo Electronico</label>
+            <input ngModel name="email" type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" required>
+            <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input ngModel name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Numero de telefono</label>
+            <input ngModel name="telefono" type="number" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" required>
+            <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+          </div>
+          <div class="alert alert-warning" role="alert">
+            Todos los campos son obligatorios
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-sertec">Registrarme</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--end modals  -->

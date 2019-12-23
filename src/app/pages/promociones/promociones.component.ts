@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
-import swal from "sweetalert";
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
+  selector: 'app-promociones',
+  templateUrl: './promociones.component.html',
   styles: []
 })
-export class PrincipalComponent implements OnInit {
+export class PromocionesComponent implements OnInit {
 
   public ocultarBoton: string ='';
   public ocultarPerfil: string ='';
@@ -17,25 +15,24 @@ export class PrincipalComponent implements OnInit {
   usuario: Usuario;
 
   constructor(
-    public _usuarioServices: UsuarioService
+    public _usuarioServices: UsuarioService 
   ) { }
 
   ngOnInit() {
-    if(this._usuarioServices.usuario===null){
-      console.log("todo vacio",this._usuarioServices.usuario);
+
+    this.usuario= this._usuarioServices.usuario;
+    this.correo=this.usuario.email;
+    if(this.usuario._id.length>3){
+      this.ocultarBoton='oculto';
+    }else
       this.ocultarPerfil='oculto';
-      
-    }else{
-      this.usuario= this._usuarioServices.usuario;
-      console.log("werty",this.usuario);
-      this.correo=this.usuario.email;
-      if(this.usuario._id.length>3 ){
-        this.ocultarBoton='oculto';
-      }
-    }
+
   }
 
 
+
+
+  
   ingresar(forma: NgForm){
     console.log("hola",forma.value)
 
@@ -65,8 +62,23 @@ export class PrincipalComponent implements OnInit {
         console.log("la respusta", resp);
     
       })
-    
 
+  }
+
+
+
+  carrito(){
+    console.log("corrito")
+    let button=document.getElementById('button');
+    let bell=document.getElementById('notification');
+    var count= Number(bell.getAttribute('data-count')) || 0;
+    bell.setAttribute('data-count',  (count+1).toString());
+    bell.classList.add('show-count');
+    bell.classList.add('notify');
+
+    bell.addEventListener('animationend', ()=>{
+        bell.classList.remove('notify');
+    });
   }
 
 }

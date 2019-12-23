@@ -26,7 +26,7 @@ body {
 	border-bottom: solid 5px #772c8d;
 	box-shadow: 2px 10px 25px 10px rgba(0, 0, 0, .5);
 	position: fixed;
-	z-index: 1;
+	z-index: 999;
 }
 
 .logo-nombre {
@@ -130,11 +130,19 @@ figure img {
 .salones {
 	height: inherit;
 }
-.menu li:nth-of-type(2):hover ul,
+.sub_servicio:hover ul,
 li {
 	display: block;
 	text-align: center;
 }
+
+/* .menu li:nth-of-type(5):hover ul,
+li {
+	display: block;
+	text-align: center;
+} */
+
+
 .carousel img {
 	max-height: 90vh;
 	object-fit: cover;
@@ -363,6 +371,7 @@ li {
 
 .servicios_icon {
 	text-align: center;
+
 }
 
 .card-text {
@@ -468,4 +477,97 @@ li {
 	text-align: left;
 	color: white;
 	font-size: 20px;
+}
+
+
+
+/* stilos para salones */
+
+#main .carousel-inner img {
+    max-height: 70vh;
+	object-fit: cover;
+	filter: grayscale(70%);
+}
+
+
+#carousel {
+    position: relative;
+}
+
+#carousel .overlay {
+    z-index: 1;/* Sirve para contorlar el oreden de los elementos mientras mayor es el valor mayor en la prioridad */
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+	right: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+#carousel .overlay .container,
+#carousel .overlay .row{
+    height: 100%;
+}
+
+
+/* estilos para el carrito */
+
+.notification{
+	width: 50px;
+	color: white;
+	height: inherit;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+   
+}
+
+.notification:after{
+	font-size: 12px;
+	font-weight: bold;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	min-width: 20px;
+	height: 20px;
+
+	background: #ff4600;
+	border-radius: 50%;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	content: attr(data-count);
+	opacity: 0;
+	transform: scale(.5);
+	transition: .3s;
+	will-change: opacity, transform;
+}
+.notification.show-count:after{
+	opacity: 1;
+	transform: scale(1);
+}
+.notification::before{
+	/* content: "\f0f3"; */
+	font-family: "FontAwesome";
+	display: block;
+	transform-origin: center top;
+
+}
+.notification.notify:before{
+	animation-name: bell;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+}
+.carrito{
+	position: relative;
+}
+.carrito div{
+	position: absolute;
+	top: -25px;
+	right: 28px;
 }

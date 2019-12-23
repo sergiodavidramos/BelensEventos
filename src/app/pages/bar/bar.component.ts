@@ -1,41 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
+import { Servicio } from 'src/app/models/servicio.model';
+import { NgForm } from '@angular/forms';
 import swal from "sweetalert";
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
+  selector: 'app-bar',
+  templateUrl: './bar.component.html',
   styles: []
 })
-export class PrincipalComponent implements OnInit {
+export class BarComponent implements OnInit {
 
+ 
   public ocultarBoton: string ='';
   public ocultarPerfil: string ='';
   correo: string='';
   usuario: Usuario;
+  servicios: Servicio[]=[];
 
   constructor(
     public _usuarioServices: UsuarioService
   ) { }
 
   ngOnInit() {
-    if(this._usuarioServices.usuario===null){
-      console.log("todo vacio",this._usuarioServices.usuario);
-      this.ocultarPerfil='oculto';
-      
+    this.cargarServicios();
+    this.usuario= this._usuarioServices.usuario;
+    this.correo=this.usuario.email;
+    if(this.usuario._id.length>3){
+      this.ocultarBoton='oculto';
     }else{
-      this.usuario= this._usuarioServices.usuario;
-      console.log("werty",this.usuario);
-      this.correo=this.usuario.email;
-      if(this.usuario._id.length>3 ){
-        this.ocultarBoton='oculto';
-      }
+
+      this.ocultarPerfil='oculto';
     }
+
+
   }
 
 
+  
   ingresar(forma: NgForm){
     console.log("hola",forma.value)
 
@@ -65,8 +68,32 @@ export class PrincipalComponent implements OnInit {
         console.log("la respusta", resp);
     
       })
-    
 
+  }
+
+  cargarServicios(){
+    this._usuarioServices.cargarServicios('bar').subscribe((resp:any)=>{
+      // console.log(resp.paquetes);
+      this.servicios = resp.servicios;
+      console.log("Sercio -comedores......",this.servicios[0]);
+      // console.log("Prueba",this.paquetes[0].servicios[0]._id);
+      
+    })
+  }
+
+
+  carrito(){
+    console.log("corrito")
+    let button=document.getElementById('button');
+    let bell=document.getElementById('notification');
+    var count= Number(bell.getAttribute('data-count')) || 0;
+    bell.setAttribute('data-count',  (count+1).toString());
+    bell.classList.add('show-count');
+    bell.classList.add('notify');
+
+    bell.addEventListener('animationend', ()=>{
+        bell.classList.remove('notify');
+    });
   }
 
 }

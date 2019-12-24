@@ -1,1 +1,220 @@
-<p>carrito works!</p>
+<header class="header">
+    <div class="container">
+      <a routerLink="/inicio">
+        <div class="logo-nombre">
+          <figure class="logo">
+  
+            <img src="assets/Public/resources/logo.png" alt="logo">
+          </figure>
+          <div class="title_logo">
+            <h1>BELEN'S</h1>
+            <p>Eventos</p>
+          </div>
+        </div>
+      </a>
+      <nav class="menu">
+        <ol>
+          <li><a routerLink="/inicio" class="link">INICIO</a></li>
+  
+          <li class="link">
+            <a class="link" routerLink="/paquetes">PAQUETES</a>
+          </li>
+  
+          <li><a ngNativeValidate class="link" routerLink="/promociones">PROMOCIONES</a></li>
+  
+          <li class="sub_servicio">
+            <a class="link">SERVICIOS</a>
+            <ul class="sub_menu">
+              <li><a routerLink="/salones">Alquiler de Salones</a></li>
+              <li><a routerLink="/mobiliario">Alquiler de Moboliario</a></li>
+              <li><a routerLink="/catering">Catering</a></li>
+              <li><a routerLink="/bar">Servicio de Bar</a></li>
+              <li><a routerLink="/comedores">Atencion a Comedores</a></li>
+            </ul>
+  
+          </li>
+          <li><a class="link" href="#contacto">CONTACTO</a></li>
+  
+        </ol>
+      </nav>
+    </div>
+  
+  
+  
+  
+  
+    <div [ngClass]="ocultarBoton">
+      <a href="#" class="btn btn-outline-light" style="margin: 10px 0px;" data-toggle="modal"
+        data-target="#modalRegistro">Registrarse</a>
+      <a href="#" class="btn btn-outline-light" data-toggle="modal" data-target="#modalLogin">Inicias Secion</a>
+    </div>
+  
+    <div class="header__menu"  *ngIf="(ocultarBoton.length>3)">
+      <div class="header__menu--profile">
+        <img src="assets/Public/user-white.png" alt="user">
+        <p>Perfil</p>
+      </div>
+      <ul>
+        <li><a href="#">{{correo}}</a></li>
+        <li><a (click)="_usuarioServices.logout()" href="#">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+  
+  
+  <div class="carrito">
+    <div class="notification" id="notification" ></div>
+    <a routerLink="/carrito">
+      <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
+  
+    </a>
+  </div>
+   
+  
+  </header>
+  <!-- Main -->
+  <main id="main">
+    <br>
+    <br><br>
+    <br>
+    <br><br>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+    
+                    <h3 class="card-title">Servicios Añadidos al Carrito ( <small>{{cont}}</small> )</h3>
+                    <table class="table">
+                        <thead >
+                            <tr>
+                                <th></th>
+                                <th>Nombre</th>
+        
+                                <th>Precio</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let servi of _usuarioServices.servicios">
+                                <td>
+                                    <img src="../../../assets/Public/icons/money.png" alt="">
+                                </td>
+                                <td>
+                            
+                                    {{servi.nombre}}
+                                </td>
+                                <td>{{servi.precio}}</td>
+                                <td>
+                                    <button class="btn btn-danger">
+                                        Borrar
+                                    </button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4 >Total: {{total}} </h4>
+                    <br>
+                    <button (click)="realizarCompra()" type="button" class="btn btn-secondary btn-lg">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </main>
+  <!-- END Main -->
+  
+
+  
+  
+  <!-- Modales -->
+  <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Iniciar Sesión</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <form ngNativeValidate #l="ngForm" (ngSubmit)="ingresar(l)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Correo de Usuario</label>
+              <input ngModel name="email" type="email" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" required>
+              <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Contraseña</label>
+              <input ngModel name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+            </div>
+            <div class="alert alert-warning" role="alert">
+              Todos los campos son obligatorios
+            </div>
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-sertec">Iniciar</button>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Registrarse</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="registrarse(f)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre de Usuario</label>
+              <input ngModel name="nombre" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" required>
+              <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Correo Electronico</label>
+              <input ngModel name="email" type="email" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" required>
+              <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Contraseña</label>
+              <input ngModel name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Numero de telefono</label>
+              <input ngModel name="telefono" type="number" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" required>
+              <!-- <small id="emailHelp" class="form-text text-muted">El nombre del usuario es obligatorio</small> -->
+            </div>
+            <div class="alert alert-warning" role="alert">
+              Todos los campos son obligatorios
+            </div>
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-sertec">Registrarme</button>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <!--end modals  -->
+  

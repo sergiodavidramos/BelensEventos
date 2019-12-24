@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { NgForm } from '@angular/forms';
 import swal from "sweetalert";
 import { Servicio } from 'src/app/models/servicio.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catering',
@@ -20,10 +21,24 @@ export class CateringComponent implements OnInit {
   servicios: Servicio[]=[];
 
   constructor(
-    public _usuarioServices: UsuarioService
+    public _usuarioServices: UsuarioService,
+    public router: Router
   ) { }
 
   ngOnInit() {
+
+       //======= para ver el carrito
+   let bell=document.getElementById('notification');
+   if(this._usuarioServices.contador!=0){
+     bell.setAttribute('data-count',  (this._usuarioServices.contador).toString());
+     bell.classList.add('show-count');
+     bell.classList.add('notify');
+     bell.addEventListener('animationend', ()=>{
+         bell.classList.remove('notify');
+     });
+   }
+
+
     this.cargarServicios();
     this.usuario= this._usuarioServices.usuario;
     this.correo=this.usuario.email;
@@ -82,18 +97,41 @@ export class CateringComponent implements OnInit {
   }
 
 
-  carrito(){
+  carrito(cate: any){
     console.log("corrito")
-    let button=document.getElementById('button');
     let bell=document.getElementById('notification');
-    var count= Number(bell.getAttribute('data-count')) || 0;
-    bell.setAttribute('data-count',  (count+1).toString());
+    // var count= Number(bell.getAttribute('data-count')) || 0;
+    bell.setAttribute('data-count',  (this._usuarioServices.contador+=1).toString());
     bell.classList.add('show-count');
     bell.classList.add('notify');
 
     bell.addEventListener('animationend', ()=>{
         bell.classList.remove('notify');
     });
+
+    this.guardarStorage(cate)
+  }
+
+  
+  guardarStorage(cate:any){
+   
+    this._usuarioServices.servicios[this._usuarioServices.contador-1]=cate;
+    this._usuarioServices.total+=cate.precio;
+
+    
+  }
+
+  irCarrito(){
+    console.log("CARRITOO");
+    
+    this.usuario= this._usuarioServices.usuario;
+
+    if(this.usuario==null){
+      swal('Importante!', "Por favor debe iniciar secion", 'warning')
+    }else{
+
+      this.router.navigate(['/carrito'])
+    }
   }
 
 

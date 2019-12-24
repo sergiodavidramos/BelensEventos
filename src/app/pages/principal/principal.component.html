@@ -68,9 +68,13 @@
 
 
 
-  <a href="#">
-    <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
-  </a>
+  <div class="carrito">
+    <div class="notification" id="notification" ></div>
+    <a (click)="irCarrito()">
+      <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
+  
+    </a>
+  </div>
 
 </header>
 <!-- caroucel -->
@@ -163,13 +167,13 @@
             <img class="card-img-top img-responsive" src="../../../assets/Public/Imagenes Paquetes/adorno2.jpg"
               alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
+              <h4 class="card-title">Paquete de Mobiliario</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
               <!-- <a id="buttonCarrito" class="btn btn-primary btn primary">Añadir al Carrito</a> -->
 
               <div class="text-center">
-                <button type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
+                <button routerLink="/paquetes" type="button" class="btn btn-secondary  todo">Ver mas...</button>
               </div>
 
 
@@ -186,10 +190,13 @@
             <img class="card-img-top img-responsive" src="../../../assets/Public/Imagenes Paquetes/comida3.jpg"
               alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
+              <h4 class="card-title">Paquete Catering</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
-              <a id="buttonCarrito" class="btn btn-primary">Añadir al Carrito</a>
+                <div class="text-center">
+                  <button routerLink="/paquetes" type="button" class="btn btn-secondary  todo">Ver mas...</button>
+                </div>
+  
             </div>
           </div>
           <!-- Card -->
@@ -203,10 +210,13 @@
             <img class="card-img-top img-responsive" src="../../../assets/Public/Imagenes Paquetes/15Años.jpg"
               alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
+              <h4 class="card-title">Paquete Manteleria</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
-              <a id="buttonCarrito" class="btn btn-primary">Añadir al Carrito</a>
+                <div class="text-center">
+                  <button routerLink="/paquetes" type="button" class="btn btn-secondary  todo">Ver mas...</button>
+                </div>
+  
             </div>
           </div>
           <!-- Card -->
@@ -220,10 +230,13 @@
             <img class="card-img-top img-responsive" src="../../../assets/Public/Imagenes Paquetes/PlanBouquet.jpeg"
               alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
+              <h4 class="card-title">Paquete Buffet</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
-              <a id="buttonCarrito" class="btn btn-primary">Añadir al Carrito</a>
+                <div class="text-center">
+                  <button routerLink="/paquetes" type="button" class="btn btn-secondary  todo">Ver mas...</button>
+                </div>
+  
             </div>
           </div>
           <!-- Card -->
@@ -237,10 +250,13 @@
             <img class="card-img-top img-responsive" src="../../../assets/Public/Imagenes Paquetes/SalonP.jpg"
               alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
+              <h4 class="card-title">Paquete Musica</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
-              <a id="buttonCarrito" class="btn btn-primary">Añadir al Carrito</a>
+                <div class="text-center">
+                  <button routerLink="/paquetes" type="button" class="btn btn-secondary  todo">Ver mas...</button>
+                </div>
+  
 
             </div>
           </div>
@@ -255,10 +271,13 @@
             <img class="card-img-top img-responsive" src="../../../assets/Public/Imagenes Paquetes/dj.webp"
               alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Card title</h4>
+              <h4 class="card-title">Paquete Mobiliario</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                 the card's content.</p>
-              <a id="buttonCarrito" class="btn btn-primary btn primary">Añadir al Carrito</a>
+                <div class="text-center">
+                  <button routerLink="/paquetes" type="button" class="btn btn-secondary  todo">Ver mas...</button>
+                </div>
+  
             </div>
           </div>
           <!-- Card -->
@@ -513,8 +532,8 @@
             alt="foto de ">
           <div class="card-body">
             <div class="badges">
-              <span class="badge badge-warning">JavaScript</span>
-              <span class="badge badge-info">React</span>
+          
+              <span class="badge badge-info">Promo</span>
             </div>
             <h5 class="card-title">TU EVENTO CON BELEN'S EVENTOS AL MEJOR PRECIO</h5>
             <p class="card-text">Tu evento con Belen's Eventos al mejor estilo y al mejor precio ...</p>
@@ -528,8 +547,7 @@
             alt="foto de ">
           <div class="card-body">
             <div class="badges">
-              <span class="badge badge-danger">Front-end</span>
-              <span class="badge badge-info">React</span>
+              <span class="badge badge-info">Promo</span>
             </div>
             <h5 class="card-title">CRÉDITO PARA TU BODA</h5>
             <p class="card-text">Averigua sobre nuestros paquetes a crédito y celebra tu boda en SALONES
@@ -543,8 +561,7 @@
             height="300px" alt="foto de ">
           <div class="card-body">
             <div class="badges">
-              <span class="badge badge-warning">JavaScript</span>
-              <span class="badge badge-info">React</span>
+              <span class="badge badge-info">Promo</span>
             </div>
             <h5 class="card-title">NOCHE DE BODAS COMPLETAMENTE GRATIS!</h5>
             <p class="card-text">Salones Belen's Eventos, atiende solicitudes de crédito directo, sin

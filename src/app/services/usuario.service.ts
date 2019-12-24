@@ -15,6 +15,11 @@ export class UsuarioService {
   id: string;
   usuario: Usuario;
 
+   servicios =[];
+  //  : Array<object>;
+  contador:number=0;
+  total: number=0;
+
   constructor(
     public http: HttpClient,
     public router: Router
@@ -22,6 +27,17 @@ export class UsuarioService {
 
     this.cargarStorage();
    }
+
+  //  cargarStorageServicio(servi: any){
+  //   if(localStorage.getItem('id')){
+  //     this.id = localStorage.getItem('id');
+  //     this.usuario = JSON.parse(localStorage.getItem('usuario'));
+  //   }else{
+  //     this.id= '';
+  //     this.id= null;
+  //   }
+  // }
+
 
 
   cargarStorage(){
@@ -80,6 +96,10 @@ export class UsuarioService {
 
   cargarServicios(categoria:string){
     let url = URL_SERVICIOS+'/servicio/'+categoria;
+    return this.http.get(url);
+  }
+  cargarpromos(){
+    let url = URL_SERVICIOS+'/promo/';
     return this.http.get(url);
   }
 }

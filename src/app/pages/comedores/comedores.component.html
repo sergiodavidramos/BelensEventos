@@ -57,11 +57,13 @@
     </ul>
   </div>
 
-
-  <a href="#">
-    <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
-
-  </a>
+  <div class="carrito">
+    <div class="notification" id="notification" ></div>
+    <a (click)="irCarrito()">
+      <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
+  
+    </a>
+  </div>
 
 </header>
 <!-- Main -->
@@ -101,7 +103,7 @@
     <div class="row">
       <div class=" col-md-6 col-lg-4 mb-4" *ngFor="let salon of servicios">
         <div class="card">
-          <img class="card-img-top" [src]="salon.img | imagen" height="300px"
+          <img class="card-img-top" [src]="salon.img | imagen:'servicio'" height="300px"
             alt="foto de ">
           <div class="card-body">
             <div class="badges">
@@ -113,7 +115,7 @@
             <p class="card-text" >{{salon.categoria}}</p>
             <p class="card-text" >{{salon.precio}}</p>
             <div class="text-center">
-              <button (click)="carrito()" id="button" type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
+              <button (click)="carrito(salon)" id="button" type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
             </div>
           </div>
         </div>

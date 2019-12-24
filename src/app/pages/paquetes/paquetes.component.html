@@ -60,10 +60,10 @@
     </ul>
   </div>
 
-
+  <!-- routerLink="/carrito"  -->
 <div class="carrito">
   <div class="notification" id="notification" ></div>
-  <a>
+  <a (click)="irCarrito()">
     <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
 
   </a>
@@ -106,7 +106,7 @@
     <div class="row">
       <div class=" col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
         <div class="card">
-          <img class="card-img-top" [src]="paquete.img | imagen" height="300px"
+          <img class="card-img-top" [src]="paquete.img | imagen:'paquete'" height="300px"
             alt="foto de ">
           <div class="card-body">
             <div class="badges">
@@ -116,7 +116,7 @@
             <h5 class="card-title">{{paquete.nombre}}</h5>
             <p class="card-text" *ngFor= "let servi of paquete.servicios">{{servi.nombre}}</p>
             <div class="text-center">
-              <button (click)="carrito()" id="button" type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
+              <button (click)="carrito(paquete)" id="button" type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
             </div>
           </div>
         </div>

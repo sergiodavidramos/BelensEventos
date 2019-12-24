@@ -7,6 +7,7 @@ import { MobiliarioComponent } from './pages/mobiliario/mobiliario.component';
 import { ComedoresComponent } from './pages/comedores/comedores.component';
 import { BarComponent } from './pages/bar/bar.component';
 import { CateringComponent } from './pages/catering/catering.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 const appRoutes: Routes = [
     {path:'inicio', component: PrincipalComponent},
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     {path:'comedores', component: ComedoresComponent},
     {path:'bar', component: BarComponent},
     {path:'catering', component: CateringComponent},
+    {path:'carrito', component: CarritoComponent},
     
     {path:'', redirectTo: '/inicio', pathMatch: 'full'},
 ];

@@ -63,7 +63,7 @@
 
     <div class="carrito">
       <div class="notification" id="notification" ></div>
-      <a>
+      <a (click)="irCarrito()">
         <img src="assets/Public/icons/add-to-cart.png" alt="carrito" style="margin: 0 20px; height: 40px;">
     
       </a>
@@ -87,8 +87,8 @@
                 <div class="container">
                     <div class="row align-items-center" >
                         <div class="col-md-6 offset-md-3 text-center text-md-center">
-                            <h1>Alquiler de Salones</h1>
-                            <p class="d-none d-md-block">¡TU EVENTO EN EL LUGAR QUE SIEMPRE SOÑASTE!</p>
+                            <h1>Promociones</h1>
+                            <p class="d-none d-md-block">¡Aprovecha nuestros super Descuentos!</p>
                         </div>
                     </div>
                 </div>
@@ -105,19 +105,18 @@
 <section id="speakers" class="mt-4 mb-4" >
   <div class="container">
     <div class="row">
-      <div class=" col-md-6 col-lg-4 mb-4" *ngFor="let paquete of paquetes">
+      <div class=" col-md-6 col-lg-4 mb-4" *ngFor="let promo of promos">
         <div class="card">
-          <img class="card-img-top" [src]="paquete.img | imagen" height="300px"
+          <img class="card-img-top" [src]="promo.img | imagen:'promo'" height="300px"
             alt="foto de ">
           <div class="card-body">
             <div class="badges">
-              <!-- <span class="badge badge-warning"></span>
-              <span class="badge badge-info"></span> -->
+           
             </div>
-            <h5 class="card-title">{{paquete.nombre}}</h5>
-            <p class="card-text" *ngFor= "let servi of paquete.servicios">{{servi.nombre}}</p>
+            <h5 class="card-title">{{promo.nombre}}</h5>
+            <p class="card-text" *ngFor= "let servi of promo.servicios">{{servi.nombre}}</p>
             <div class="text-center">
-              <button (click)="carrito()" id="button" type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
+              <button (click)="carrito(promo)" id="button" type="button" class="btn btn-secondary  todo">Añadir al Carrito</button>
             </div>
           </div>
         </div>
